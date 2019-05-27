@@ -1,0 +1,43 @@
+{
+  "name": "react-validation-handler",
+  "version": "0.1.0",
+  "description": "this package helps you validate all inputes under a namespace wihtout need of form wrapper",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "babel ./src --out-dir ./dist -s inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khofaai/react-validation-handler.git"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "keywords": [
+    "validation",
+    "react",
+    "react-validation",
+    "validation-handler",
+    "error-handler",
+    "react-error"
+  ],
+  "author": "Anas EL ALAMI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/khofaai/react-validation-handler/issues"
+  },
+  "homepage": "https://github.com/khofaai/react-validation-handler#readme",
+  "dependencies": {
+    "fbemitter": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "files": [
+    "dist/*"
+  ]
+}
