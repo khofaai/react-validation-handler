@@ -49,7 +49,7 @@ import { ErrorHooks } from 'react-validation-handler'
     // validate method to check if all fields under a specific `namespace` are good
     ErrorHooks.validate('form1').then( (hasErros, errors) => {
       // hasError : Boolean
-      // errors: has `id` of fields that has error
+      // errors: has object with all `id`s of fields that has error
     });
   }}>validate form1</button>
 ...
