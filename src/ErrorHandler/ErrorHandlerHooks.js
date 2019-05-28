@@ -66,7 +66,7 @@ let errorHanlderHooks = {
 
   },
 
-  dispatch(name) {
+  validate(name) {
     eventBus.emit(`${name}Values` , (id, status) => {
       status ? errorsKeys[id] = true : delete errorsKeys[id];
     });
@@ -78,14 +78,6 @@ let errorHanlderHooks = {
   checkDispatch(callback) {
     callback(Object.keys(errorsKeys).length > 0, errorsKeys);
     return errorsKeys;
-  },
-
-  validate() {
-    keys.map(key => {
-      return errorHanlderHooks.validation(key, () => {
-        console.log('validate running for : ', {key})
-      });
-    });
   },
 
   check(key, callback = {}) {
