@@ -10,7 +10,7 @@ This React package is for validate separated form fields using `namespace`s.
 
 basic :
 
-```javascript
+```jsx
 //Form1 component
 import React from 'react';
 import ErrorHandler from 'react-validation-handler'
@@ -18,6 +18,9 @@ import ErrorHandler from 'react-validation-handler'
 ...
 let input1 = '';
 ...
+  // <ErrorHandler /> accept `rules` attribute by default has an object {required: true}
+  // `namespace` and `id` attributes are required so `react-validation-handler` can track that specific instance
+  // `body` attribute hold content component ( in our example it's a <input />)
   <ErrorHandler
     value={input1}
     namespace="form1"
@@ -34,7 +37,7 @@ let input1 = '';
   />
 ...
 
-//OtherComponent
+//AppComponent
 
 import Form1 from '/path/to/Form1';
 import { ErrorHooks } from 'react-validation-handler'
@@ -43,6 +46,7 @@ import { ErrorHooks } from 'react-validation-handler'
   <Form1 />
 
   <button onClick={ _ => {
+    // validate method to check if all fields under a specific `namespace` are good
     ErrorHooks.validate('form1').then( (hasErros, errors) => {
       // hasError : Boolean
       // errors: has `id` of fields that has error
