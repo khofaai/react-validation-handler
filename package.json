@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "babel ./src --out-dir ./dist -s inline"
+    "publish": "babel ./src --out-dir ./dist -s inline"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,9 @@
   },
   "homepage": "https://github.com/khofaai/react-validation-handler#readme",
   "dependencies": {
-    "fbemitter": "^2.1.1"
+    "fbemitter": "^2.1.1",
+    "simple-eventbus": "file:../simple-eventbus",
+    "simple-events-bus": "^0.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

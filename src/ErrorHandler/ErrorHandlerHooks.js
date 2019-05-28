@@ -1,5 +1,5 @@
 import React from 'react';
-import eventBus from '../eventBus';
+import eventBus from 'simple-events-bus';
 let keys = [];
 let errorsKeys = {};
 let elements = {};
