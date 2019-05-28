@@ -1,21 +1,13 @@
 .InputWrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: auto;
-    margin-bottom: rem(15);
-  }
-  .InputWrapper_explain {
-    display: block;
-    color: red;
-    position: absolute;
-    background-color: #fff;
-    border: 3px solid #fff;
-    top: -38%;
-    right: 5px;
-    padding: 2px 5px;
-  }
-  .InputWrapper.has-error .ant-select-selection, .InputWrapper.has-error .ant-input {
-    border-color: red;
-  }
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.InputWrapper_explain {
+  display: block;
+  color: red;
+  background-color: #fff;
+  border: 3px solid #fff;
+}
   

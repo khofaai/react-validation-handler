@@ -55,3 +55,13 @@ import { ErrorHooks } from 'react-validation-handler'
 ...
 
 ```
+
+## ErrorHandler
+
+| property | required | default | description |
+|---|---|---|---|
+| body      | true  | -                | component body //input, textarea, ... |
+| namespace | true  | -                | to identify field group name |
+| value     | true  | -                | current field value |
+| id        | true  | -                | current field id |
+| rules     | false | {required: true} | rules for current field (only `number`, `email` are available for now) |

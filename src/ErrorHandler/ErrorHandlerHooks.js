@@ -1,7 +1,6 @@
 import React from 'react';
 import eventBus from 'simple-events-bus';
 
-let keys = [];
 let errorsKeys = {};
 let elements = {};
 
@@ -15,17 +14,9 @@ let messages = {
       en: 'this field accept numbers only',
       fr: 'Ce champ accept que les numero'
     },
-    string: {
-      en: 'this field accept caracteres only',
-      fr: 'Ce champ accept que les caracteres'
-    },
     email: {
       en: 'this field should be a valid email',
       fr: 'ce champ dois etre un valide email'
-    },
-    number: {
-      en: 'this field accept only numbers',
-      fr: 'ce champ accepte que les numeros'
     }
   }
 };
@@ -54,10 +45,6 @@ let errorHanlderHooks = {
     return elements[id];
   },
 
-  getElements() {
-    return elements;
-  },
-
   clearErrorMessage(value, setErrorInput) {
     if(value.trim() !== '') {
       setErrorInput('')
@@ -78,21 +65,8 @@ let errorHanlderHooks = {
     return errorsKeys;
   },
 
-  check(key, callback = {}) {
-    eventBus.emit(key, callback);
-  },
-
-  validation(key, callback) {
-    keys.push(key);
-    eventBus.addListener(key, callback)
-  },
-
   getErrorLabel(message) {
     return (<label className="InputWrapper_explain">{message}</label>)
-  },
-
-  checkInput(input, rules, lang = 'en') {
-    input.error = rules.required && input.value === '' ? messages.required[lang] : '';
   },
 
   setErrorMessage(rules, value, lang = 'en') {
@@ -104,20 +78,6 @@ let errorHanlderHooks = {
       return messages.type.number[lang];
     }
     return '';
-  },
-
-  validateData(data, containerName = 'none',lang = 'en') {
-    let dataKeys = Object.keys(data);
-    dataKeys.map( key => {
-      let input = data[key];
-      if(input.required) {
-        input.error = input.value.trim() === '' ? messages.required[lang] : '';
-      }
-      return input
-    });
-
-    if(containerName !== 'none') eventBus.emit(containerName, data);
-    return data;
   }
 }
 

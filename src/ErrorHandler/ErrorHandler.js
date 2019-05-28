@@ -7,7 +7,7 @@ let nameHasError = {};
 const errorCustomClass = 'has-error';
 let ErrorText = ({error}) => error !== '' ? (ErrorHandlerHooks.getErrorLabel(error)): '';
 
-let ErrorHandler = ({ body, namespace = 'none', value = '', id = '', rules = {required: true}}) => {
+let ErrorHandler = ({ body, namespace, value, id, rules = {required: true}}) => {
 
   let [errorMessage, setErrorMessage] = useState('');
   let [errorInput, setErrorInput] = useState(value);
