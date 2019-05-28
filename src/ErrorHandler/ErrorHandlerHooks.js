@@ -1,8 +1,10 @@
 import React from 'react';
 import eventBus from 'simple-events-bus';
+
 let keys = [];
 let errorsKeys = {};
 let elements = {};
+
 let messages = {
   required: {
     en: 'this field is required',
@@ -60,10 +62,6 @@ let errorHanlderHooks = {
     if(value.trim() !== '') {
       setErrorInput('')
     }
-  },
-
-  dispatchChecker(id, status) {
-
   },
 
   validate(name) {

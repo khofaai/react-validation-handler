@@ -11,14 +11,9 @@ let ErrorHandler = ({ body, namespace = 'none', value = '', id = '', rules = {re
 
   let [errorMessage, setErrorMessage] = useState('');
   let [errorInput, setErrorInput] = useState(value);
+  let BodyTag = body;
 
   nameHasError[namespace] = [];
-
-  let BodyTag = body;
-  let bodyAttrs = {
-    check: ErrorHandlerHooks.check,
-    validate: ErrorHandlerHooks.validate
-  };
 
   useEffect( _ => {
     eventBus.addListeners(`${namespace}Values`, cb => {
@@ -42,7 +37,7 @@ let ErrorHandler = ({ body, namespace = 'none', value = '', id = '', rules = {re
   
   return (
     <div className={`InputWrapper${errorMessage !== '' ? ' '+errorCustomClass : ''}`}>
-      <BodyTag {...bodyAttrs} updateValue={updateValue} />
+      <BodyTag updateValue={updateValue} />
       <ErrorText error={errorMessage} />
     </div>
   );
