@@ -101,22 +101,22 @@ let errorHanlderHooks = {
     return (<label className="InputWrapper_explain">{message}</label>)
   },
 
-  checkInput(input, rules, lang = 'fr') {
+  checkInput(input, rules, lang = 'en') {
     input.error = rules.required && input.value === '' ? messages.required[lang] : '';
   },
 
-  setErrorMessage(rules, value) {
+  setErrorMessage(rules, value, lang = 'en') {
     if(rules.required && (typeof value === 'string' && value.trim()) === '') {
-      return messages.required.fr;
+      return messages.required[lang];
     } else if(rules.email && !errorHanlderHooks.isEmail(value)) {
-      return messages.type.email.fr;
+      return messages.type.email[lang];
     } else if(rules.number && !errorHanlderHooks.isNumber(value)) {
-      return messages.type.number.fr;
+      return messages.type.number[lang];
     }
     return '';
   },
 
-  validateData(data, containerName = 'none',lang = 'fr') {
+  validateData(data, containerName = 'none',lang = 'en') {
     let dataKeys = Object.keys(data);
     dataKeys.map( key => {
       let input = data[key];

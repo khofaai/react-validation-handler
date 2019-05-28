@@ -1,0 +1,17 @@
+.InputWrapper {
+  /* position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto; */
+}
+.InputWrapper_explain {
+  display: block;
+  color: red;
+  padding: 2px 5px;
+}
+.InputWrapper input {
+  padding: 5px 15px
+}
+.InputWrapper.has-error input{
+  border: 1px solid red;
+}

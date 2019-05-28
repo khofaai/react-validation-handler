@@ -1,4 +1,4 @@
-import ErrorHandler, { ErrorHooks } from './ErrorHandler';
+import ErrorHandler, { ErrorHooks } from './ErrorHandler/ErrorHandler';
 
 export default ErrorHandler;
 

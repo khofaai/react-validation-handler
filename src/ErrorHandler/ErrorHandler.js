@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ErrorHandlerHooks from './ErrorHandlerHooks';
-import './ErrorHandler.scss';
+import './ErrorHandler.css';
 import eventBus from '../eventBus';
 
 let nameHasError = {};
 const errorCustomClass = 'has-error';
 let ErrorText = ({error}) => error !== '' ? (ErrorHandlerHooks.getErrorLabel(error)): '';
 
-let ErrorHandler = ({ body, valueKey = '', namespace = 'none', value = '', id = '', rules = {}}) => {
+let ErrorHandler = ({ body, valueKey = '', namespace = 'none', value = '', id = '', rules = {required: true}}) => {
 
   let [errorUpdate, setErrorUpdate] = useState(true);
   let [errorMessage, setErrorMessage] = useState('');
@@ -24,13 +24,6 @@ let ErrorHandler = ({ body, valueKey = '', namespace = 'none', value = '', id = 
   };
 
   useEffect( _ => {
-    if(namespace !== 'none') {
-      eventBus.addListener(namespace, (data) => setErrorMessage(data[valueKey].error));
-      return _ => eventBus.removeListener(namespace);
-    }
-  }, []);
-
-  useEffect( _ => {
     eventBus.addListeners(`${namespace}Values`, cb => {
       let val = ErrorHandlerHooks.getElement(id);
       val = val === undefined ? '' : val;
@@ -41,16 +34,18 @@ let ErrorHandler = ({ body, valueKey = '', namespace = 'none', value = '', id = 
 
     return _ => eventBus.removeListener(`${namespace}Values`);
   }, []);
+
+  let updateValue = val => {
+    ErrorHandlerHooks.setElement(id, val);
+    if(val !== '' && (typeof val === 'string' && val.trim() !== '')) setErrorMessage('')
+    else setErrorMessage(ErrorHandlerHooks.setErrorMessage(rules, val));
+    setErrorInput(val);
+    return errorInput;
+  }
   
   return (
     <div className={`InputWrapper${errorMessage !== '' ? ' '+errorCustomClass : ''}`}>
-      <BodyTag updateValue={ val => {
-        ErrorHandlerHooks.setElement(id, val);
-        if(val !== '' && (typeof val === 'string' && val.trim() !== '')) setErrorMessage('')
-        else setErrorMessage(ErrorHandlerHooks.setErrorMessage(rules, val));
-        setErrorInput(val);
-        return errorInput;
-      }} {...bodyAttrs} />
+      <BodyTag {...bodyAttrs} updateValue={updateValue} />
       <ErrorText error={errorMessage} />
     </div>
   );
