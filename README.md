@@ -2,6 +2,8 @@
 
 This React package is for validate separated form fields using `namespace`s. 
 
+[![npm](https://img.shields.io/npm/v/react-validation-handler.svg)](https://www.npmjs.com/package/react-validation-handler) ![license](https://img.shields.io/github/license/khofaai/react-validation-handler.svg) [![npm](https://img.shields.io/npm/dw/react-validation-handler.svg)](https://www.npmjs.com/package/react-validation-handler) [![npm](https://img.shields.io/npm/dt/react-validation-handler.svg)](https://www.npmjs.com/package/react-validation-handler) [![Build Status](https://travis-ci.org/khofaai/react-validation-handler.svg?branch=master)](https://travis-ci.org/khofaai/react-validation-handler)
+
 ## Installation
 
 - comming soon
