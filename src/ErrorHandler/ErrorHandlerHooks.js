@@ -9,6 +9,10 @@ let messages = {
     en: 'this field is required',
     fr: `Ce champ est requis`
   },
+  equalTo: {
+    fr: 'Ce champs doit être similaire à : ',
+    en: 'this field should be like : ',
+  },
   type: {
     number: {
       en: 'this field accept numbers only',
@@ -21,6 +25,15 @@ let messages = {
   }
 };
 
+const emitValidation = eventName => {
+  eventBus.emit(eventName, (id, status) => {
+    status ? errorsKeys[id] = true : delete errorsKeys[id];
+  });
+  return {
+    then: errorHanlderHooks.checkDispatch
+  }
+}
+
 let errorHanlderHooks = {
 
   getMessages() {
@@ -30,6 +43,10 @@ let errorHanlderHooks = {
   isEmail(val) {
     let regx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regx.test(val);
+  },
+
+  isEqualto(val, ref) {
+    return val === elements[ref];
   },
 
   isNumber(val) {
@@ -51,13 +68,12 @@ let errorHanlderHooks = {
     }
   },
 
+  check(id) {
+    return emitValidation(`${id}Value`);
+  },
+
   validate(name) {
-    eventBus.emit(`${name}Values` , (id, status) => {
-      status ? errorsKeys[id] = true : delete errorsKeys[id];
-    });
-    return {
-      then: errorHanlderHooks.checkDispatch
-    }
+    return emitValidation(`${name}Values`);
   },
 
   checkDispatch(callback) {
@@ -72,10 +88,16 @@ let errorHanlderHooks = {
   setErrorMessage(rules, value, lang = 'en') {
     if(rules.required && (typeof value === 'string' && value.trim()) === '') {
       return messages.required[lang];
-    } else if(rules.email && !errorHanlderHooks.isEmail(value)) {
+    } 
+    if(rules.email && !errorHanlderHooks.isEmail(value)) {
       return messages.type.email[lang];
-    } else if(rules.number && !errorHanlderHooks.isNumber(value)) {
+    }
+    if(rules.number && !errorHanlderHooks.isNumber(value)) {
       return messages.type.number[lang];
+    }
+    if(rules.equalTo && !errorHanlderHooks.isEqualto(value, rules.equalTo)) {
+      let label = rules.equalToLabel ? rules.equalToLabel : rules.equalTo;
+      return `${messages.equalTo[lang]} ${label}`;
     }
     return '';
   }

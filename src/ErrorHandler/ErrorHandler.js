@@ -15,16 +15,20 @@ let ErrorHandler = ({ body, namespace, value, id, rules = {required: true}}) => 
 
   nameHasError[namespace] = [];
 
-  useEffect( _ => {
-    eventBus.addListeners(`${namespace}Values`, cb => {
-      let val = ErrorHandlerHooks.getElement(id);
-      val = val === undefined ? '' : val;
-      let err = ErrorHandlerHooks.setErrorMessage(rules, val);
-      setErrorMessage(err);
-      cb(id, err !== '');
-    });
+  const checkValidation = cb => {
+    let val = ErrorHandlerHooks.getElement(id);
+    val = val === undefined ? '' : val;
+    let err = ErrorHandlerHooks.setErrorMessage(rules, val);
+    setErrorMessage(err);
+    cb(id, err !== '');
+  }
 
-    return _ => eventBus.removeListener(`${namespace}Values`);
+  useEffect( _ => {
+    eventBus.addListeners(`${namespace}Values`, checkValidation);
+    
+    eventBus.addListener(`${id}Value`, checkValidation);
+
+    return _ => eventBus.removeListener(`${id}Value`);
   }, []);
 
   let updateValue = val => {

@@ -17,7 +17,7 @@ yarn add react-validation-handler
 
 ## Usage
 
-basic :
+#### basic :
 
 ```jsx
 //Form1 component
@@ -65,6 +65,23 @@ import { ErrorHooks } from 'react-validation-handler'
 
 ```
 
+#### validate a target field
+
+```jsx
+...
+  <Form1 />
+
+  <button onClick={ _ => {
+    // check method to check if the specified field meet rules requirements
+    ErrorHooks.check('form1Input1').then( (hasError, errors) => {
+      // hasError : Boolean
+      // errors: has `id` of fields that has error
+    });
+  }}>validate form1Input1</button>
+...
+
+```
+
 ## ErrorHandler
 
 | property | required | default | description |
@@ -74,3 +91,15 @@ import { ErrorHooks } from 'react-validation-handler'
 | value     | true  | -                | current field value |
 | id        | true  | -                | current field id |
 | rules     | false | {required: true} | rules for current field (only `number`, `email` are available for now) |
+
+#### Rules 
+
+| rule | type | default | description | Status |
+|---|---|---|---|---|
+| required  | Boolean | true  | set field to required |DONE |
+| email     | Boolean | false | set field as email, it should be a valid email |DONE |
+| number    | Boolean | false | set field as number, it should be a valid number |DONE |
+| equalTo   | String  | ''    | set field to equal another ErrorHandler Field ID " |DONE |
+| pattern   | String  | ''    | set regex to test on | NOT YET |
+| min       | Number  | -1    | field value length should be greater or equal to min value | NOT YET |
+| max       | Number  | -1    | field value length should be less or equal to min value | NOT YET |
