@@ -1,6 +1,6 @@
 {
   "name": "react-validation-handler",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "this package helps you validate all inputes under a namespace wihtout need of form wrapper",
   "main": "dist/index.js",
   "scripts": {

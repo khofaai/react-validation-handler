@@ -98,8 +98,9 @@ import { ErrorHooks } from 'react-validation-handler'
 |---|---|---|---|---|
 | required  | Boolean | true  | set field to required |DONE |
 | email     | Boolean | false | set field as email, it should be a valid email |DONE |
+| char      | Boolean | false | set field as string, it's only valid valid names {/^[A-Za-z-' ]+$/} |DONE |
 | number    | Boolean | false | set field as number, it should be a valid number |DONE |
 | equalTo   | String  | ''    | set field to equal another ErrorHandler Field ID " |DONE |
-| pattern   | String  | ''    | set regex to test on | NOT YET |
-| min       | Number  | -1    | field value length should be greater or equal to min value | NOT YET |
-| max       | Number  | -1    | field value length should be less or equal to min value | NOT YET |
+| pattern   | object  | {}    | object with two keys `regex` to test the entred value and `message` to be displayed in case error | DONE |
+| min       | Number  | -1    | field value length should be greater or equal to min value | DONE |
+| max       | Number  | -1    | field value length should be less or equal to min value | DONE |
